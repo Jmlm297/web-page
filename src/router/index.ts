@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 import ComposicionGo from '../components/ComposicionGo.vue'
 
 const routes = [
@@ -29,11 +29,47 @@ const routes = [
     name: 'Vista Web',
     component: () => import('../views/VistaWeb.vue'),
   },
+  {
+    path: '/principal',
+    name: 'PrinceView',
+    component: () => import('../views/PrincengView.vue'),
+  },
+  {
+    path: '/contact',
+    name: 'Contact',
+    component: () => import('../views/ContactPage.vue'),
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('../views/LoginPage.vue'),
+  },
+
+  {
+    path: '/prueba-tailwind',
+    name: 'Prueba Tailwind',
+    component: () => import('../views/PruebaTailwind.vue'),
+  },
+
+  // Parent route for handling 404 Not Found
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: () => import('../modules/common/pages/NoFound404.vue'),
+
+    children: [], // Empty children array to indicate this is a parent route
+  },
+
+  {
+    path: '/register',
+    name: 'Register',
+    component: () => import('../views/RegisterPage.vue'),
+  },
 ]
 
 const router = createRouter({
   history: createWebHistory(),
-  routes,
+  routes: routes as RouteRecordRaw[],
 })
 
 export default router
